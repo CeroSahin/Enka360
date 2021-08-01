@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog Post | Enka 360{% endblock %}
+
+{% block content %}
+<section class="post-page" id="post">
+    <div class="container" style="margin-top: 0.6rem;">
+        <h1 class="post-header">{{ post.title }}</h1>
+        <p class="post-subtitle">{{ post.subtitle }}</p>
+        <b>{{ post.author }} tarafından {{ post.date }} tarihinde yayınlanmıştır.</b>
+    </div>
+    <img class="post-img" src="{{ post.image_url }}" role="presentation">
+    <div class="container">
+        <div class="post-content">
+            {{ post.content|safe }}
+        </div>
+        <div>
+            <a href="{{ url_for('show_blog') }}" class="btn btn-sm animated-button victoria-four">Blog sayfasına dön<i class="fas fa-long-arrow-alt-left"></i></a>
+            {% if current_user.is_authenticated %}
+            <a class="btn btn-sm btn-warning" href="{{ url_for('edit_post', post_id=post.id) }}"><i class="fas fa-edit"></i></a>
+            <a class="btn btn-sm btn-danger" href="{{ url_for('delete_post', post_id=post.id) }}"><i class="fas fa-trash-alt"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

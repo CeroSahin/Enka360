@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Geçmiş Misafir Ayarları | Enka 360{% endblock %}
+
+{% block content %}
+<div class="wtform-container">
+    <h1>Carosuel Content'ini Güncelleme</h1>
+    <p>
+        Bu form ana sayfanın geçmiş konukları bölümünde gösterilen konukları güncellemek içindir.
+        Lüften önceden Enka 360'ta ağırlamadığınız konukları bu formdan kaydetmeyiniz.
+    </p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for msg in messages %}
+        <p style="color:red;">{{ msg }}</p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {{ wtf.quick_form(form, novalidate=True, button_map={'submit': 'warning'}) }}
+</div>
+{% endblock %}

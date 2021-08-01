@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" media="screen">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Open+Sans:wght@400;800&family=PT+Serif&display=swap"
+          rel="stylesheet">
+    <!-- Fonts Awesome -->
+    <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-replace-svg="nest"></script>
+    <!-- Bootstrap cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- Bootstrap js scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="{{ url_for('home', _anchor='main') }}" style="color: white; size:2rem;">360</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse justify-content-end" id="navbarSupportedContent">
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home', _anchor='about-us') }}">Hakkımızda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('home', _anchor='guests') }}">Misafirlerimiz</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('show_blog') }}">Blog</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('show_team') }}">Takım</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('contact') }}">İletişim</a>
+            </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('choose_operation') }}">Operasyonlar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">Çıkış</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% block content %} {% endblock %}
+
+</body>
+
+<footer>
+    <p class="footer-text">©2021 Enka 360</p>
+    <a href="https://www.instagram.com/enka360/"><i class="media-links fab fa-instagram-square"></i></a>
+    <a href="https://www.youtube.com/channel/UCY3BUrLCE-RsPup5Jz-P4OQ"><i class="media-links fab fa-youtube"></i></a>
+    <p class="footer-text">Developed by <a class="dev" href="https://github.com/CeroSahin">Ceren Şahin</a></p>
+</footer>
+
+</html>

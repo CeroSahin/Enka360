@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog | Enka 360{% endblock %}
+
+{% block content %}
+<section class="blog-page" id="blog-page">
+    <h1 class="section-heading">Blog 360</h1>
+    {% if all_posts %}
+    <div class="row">
+        {% for post in all_posts %}
+        <div class="col-lg-10 row-post" >
+            <div class="post-info" style="position: relative;">
+                    <p><b>{{ post.author }}</b> · {{ post.date }}</p>
+                    <h4 class="post-subtitle" style="font-weight: 600; font-family: 'Open Sans', sans-serif; color: black;">{{ post.title }}</h4>
+                    <p class="post-subtitle">{{ post.subtitle[:100] }}...</p>
+                    <img alt="post thumbnail" class="post-display-img" src="{{ post.image_url }}" style="position: absolute; right: 0; top: 5%;">
+                    <div>
+                        <a href="{{ url_for('show_post', post_name=post.title) }}"
+                           class="btn btn-sm animated-button victoria-four"><span>read more</span></a>
+                        {% if current_user.is_authenticated %}
+                        <a class="btn btn-sm btn-warning" href="{{ url_for('edit_post', post_id=post.id) }}"><i
+                                class="fas fa-edit"></i></a>
+                        <a class="btn btn-sm btn-danger" href="{{ url_for('delete_post', post_id=post.id) }}"><i
+                                class="fas fa-trash-alt"></i></a>
+                        {% endif %}
+                    </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-post">
+        <h3>Çok yakında bomba gibi yazılarla karşınızdayız!</h3>
+        <a class="btn btn-light" href="{{ url_for('home') }}">Ana Sayfaya Dön</a>
+    </div>
+    {% endif %}
+</section>
+
+{% endblock %}

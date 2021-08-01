@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Ekip | Enka 360{% endblock %}
+
+{% block content %}
+  <div class="team-container" id="team">
+    <h1 class="section-title">Takımla tanışın!</h1>
+    {% if team %}
+    <div class="row">
+      {% for member in team %}
+      <div class="col-lg-4">
+        <div class="person-bubble">
+          <img class="person-img" src="{{ member.image_url }}">
+          <p class="carousel-title">{{ member.name }}</p>
+          <b style="font-size: 1.5rem;">{{ member.subtitle }}</b>
+          <!-- <p class="regular-text">{{ member.description}}</p> -->
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="wtform-container">
+      <h2>Takım sayfamızı güncelliyoruz!</h2>
+      <p>Bomba gibi bir takımla geleceğiz...</p>
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}

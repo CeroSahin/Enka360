@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Giriş Yap | Enka 360{% endblock %}
+
+{% block content %}
+<div class="wtform-container">
+  <h1 class="section-heading">Admin hesabına giriş yapın.</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for msg in messages %}
+        <p style="color:red;">{{ msg }}</p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    {{ wtf.quick_form(form, novalidate=True, button_map={'submit': 'warning'}) }}
+
+</div>
+{% endblock %}
