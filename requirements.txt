@@ -54,7 +54,7 @@ optional-django==0.3.0
 packaging==20.9
 pandas==1.2.2
 protobuf==3.17.0
-psycopg2-binary==2.8.6
+psycopg2-binary==2.9.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
